@@ -1,9 +1,11 @@
 from flask import Flask, json, request
+from flask_cors import CORS
 import keepa
 import uuid
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 # POST /current-used-price 
 # POST public
