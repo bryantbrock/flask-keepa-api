@@ -2,6 +2,7 @@ from flask import Flask, json, request
 from flask_cors import CORS
 import keepa
 import uuid
+from datetime import date
 import os
 
 app = Flask(__name__)
@@ -32,6 +33,8 @@ def current_used_price():
     packet = {
       "id": uuid.uuid4(),
       "price": str(products[0]['data']['USED'][-1]),
+      "title": str(products[0]['title']),
+      "date": date.today().strftime("%m/%d/%y"),
       "status": "200"
     }
   return json.dumps(packet)
