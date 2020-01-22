@@ -19,19 +19,20 @@ def current_used_price():
   except (ConnectionError, OSError, Exception) as msg:
     packet = {
       "id": uuid.uuid4(),
-      "price": '',
-      "title": '',
-      "date": '',
+      "price": 'none',
+      "title": 'none',
+      "date": 'none',
       "msg": str(msg),
       "status": "500"
     }
     return json.dumps(packet)
+    
   if products == []:
     packet = {
       "id": uuid.uuid4(),
-      "price": '',
-      "title": '',
-      "date": '',
+      "price": 'none',
+      "title": 'none',
+      "date": 'none',
       "msg": str("Found no price for sku #" + str(request.get_json()['isbn'])),
       "status": "401"
     }
@@ -41,7 +42,7 @@ def current_used_price():
       "price": str(products[0]['data']['USED'][-1]),
       "title": str(products[0]['title']),
       "date": date.today().strftime("%m/%d/%y"),
-      "msg": '',
+      "msg": 'none',
       "status": "200"
     }
   return json.dumps(packet)
