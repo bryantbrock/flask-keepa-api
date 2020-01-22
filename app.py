@@ -35,6 +35,7 @@ def current_used_price():
       "price": str(products[0]['data']['USED'][-1]),
       "title": str(products[0]['title']),
       "date": date.today().strftime("%m/%d/%y"),
+      "msg": '',
       "status": "200"
     }
   return json.dumps(packet)
