@@ -18,14 +18,20 @@ def current_used_price():
     products = api.query(request.get_json()['isbn'], product_code_is_asin=False)
   except (ConnectionError, OSError, Exception) as msg:
     packet = {
-       "id": uuid.uuid4(),
-       "msg": str(msg),
-       "status": "500"
+      "id": uuid.uuid4(),
+      "price": '',
+      "title": '',
+      "date": '',
+      "msg": str(msg),
+      "status": "500"
     }
     return json.dumps(packet)
   if products == []:
     packet = {
       "id": uuid.uuid4(),
+      "price": '',
+      "title": '',
+      "date": '',
       "msg": str("Found no price for sku #" + str(request.get_json()['isbn'])),
       "status": "401"
     }
